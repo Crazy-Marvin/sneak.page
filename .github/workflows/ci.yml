@@ -1,11 +1,14 @@
-- name: Setup Elm
-  # You may pin to the exact commit or the version.
-  # uses: justgook/setup-elm@c6b69ece0327233e01d25e0a9e2426422ca76423
-  uses: justgook/setup-elm@1.2.0
-  with:
-    # Version of Elm to use. E.g. 0.19.1
-    elm-version: # optional, default is 0.19.1
-    # The per-user cache of package information lives at the directory specified in the ELM_HOME environment variable.
-    elm-home: # optional, default is 
-    # Save ELM_HOME to cache
-    cache: # optional, default is true
+name: CI
+on: push
+jobs:
+ build:
+  runs-on: Ubuntu-latest
+  steps:
+    - name: "📥 Check-out"
+      uses: actions/checkout@v1
+    - name: "🏗 Setup Elm"
+      uses: justgook/setup-elm@v1
+    - name: "📤 Upload code coverage"
+      uses: codecov/codecov-action@v1
+      with:
+          token: ${{ secrets.CODECOV_TOKEN }}
