@@ -78,6 +78,54 @@ header =
         )
 
 
+screenings : Element msg
+screenings =
+    Element.el
+        [ width fill
+        , Border.shadow
+            { offset = ( 0, 7 )
+            , size = 0
+            , blur = 24
+            , color = Element.rgba255 0 0 0 0.19
+            }
+        ]
+        (Element.row
+            [ width fill
+            , spacing 8
+            , padding 8
+            , Background.color (Element.rgb255 247 187 154)
+            , Border.shadow
+                { offset = ( 0, 3 )
+                , size = 0
+                , blur = 6
+                , color = Element.rgba255 0 0 0 0.039
+                }
+            ]
+            --[ Element.explain Debug.todo ]
+            [ Element.image [ Element.width (Element.px 64) ]
+                { src = "assets/logo.png", description = "Logo" }
+            , Element.row
+                -- paragraph would break
+                [ Font.semiBold
+                , Font.size 24
+                ]
+                [ Element.el
+                    [ Font.color (Element.rgb255 155 8 71)
+                    ]
+                    (Element.text "SNEAK")
+                , Element.el
+                    [ Font.color (Element.rgb255 109 16 56)
+                    ]
+                    (Element.text ".PAGE")
+                ]
+            , Element.row [ spacing 30, padding 22, Element.alignRight ]
+                [ Element.image [] { src = "assets/account.svg", description = "Account" }
+                , Element.image [] { src = "assets/about.svg", description = "About" }
+                ]
+            ]
+        )
+
+
 myRowOfStuff : Element msg
 myRowOfStuff =
     row [ width fill, centerY, spacing 30 ]
