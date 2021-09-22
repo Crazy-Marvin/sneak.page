@@ -32,7 +32,7 @@ Check out the [contribution guidelines](https://github.com/Crazy-Marvin/sneak.pa
 
 I am extremely grateful that the [Elm Hannover Meetup](https://www.meetup.com/Hannover-Elm-Language-Meetup/) guided me through this project. 😍
 
-Additionally a huge thanks goes to my sponsors [Oh Dear](https://ohdear.app/), [updown.io](https://updown.io/jnua), [PingPing](https://pingping.io/), [Hetzner](https://hetzner.cloud/), [DigitalOcean](https://m.do.co/c/d4e804717547), [Google Cloud](https://cloud.google.com/). [JetBrains](https://www.jetbrains.com/), [1Password](https://1password.com/), [GitHub](https://github.com/Crazy-Marvin/sneak.page/), [F-Droid](https://f-droid.org/) and [Hosted Weblate](https://hosted.weblate.org/).
+Additionally a huge thanks goes to my sponsors [Oh Dear](https://ohdear.app/), [updown.io](https://updown.io/jnua), [PingPing](https://pingping.io/), [Instatus](https://instatus.com/), [Hetzner](https://hetzner.cloud/), [DigitalOcean](https://m.do.co/c/d4e804717547), [Google Cloud](https://cloud.google.com/). [JetBrains](https://www.jetbrains.com/), [1Password](https://1password.com/), [GitHub](https://github.com/Crazy-Marvin/sneak.page/), [F-Droid](https://f-droid.org/) and [Hosted Weblate](https://hosted.weblate.org/).
 
 # License
 
