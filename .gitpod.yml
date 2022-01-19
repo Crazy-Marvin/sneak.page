@@ -9,6 +9,7 @@ ports:
 vscode:
   extensions:
     - elmTooling.elm-ls-vscode
+    - simonsiefke.prettier-vscode
     - hbenl.vscode-test-explorer
     - firefox-devtools.vscode-firefox-debug
     - ms-vscode.js-debug
