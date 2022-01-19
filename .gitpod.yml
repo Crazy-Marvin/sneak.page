@@ -9,3 +9,9 @@ ports:
 vscode:
   extensions:
     - elmTooling.elm-ls-vscode
+    - hbenl.vscode-test-explorer
+    - firefox-devtools.vscode-firefox-debug
+    - ms-vscode.js-debug
+    - ms-vscode.test-adapter-converter
+    - mikestead.dotenv
+    - vscode-icons-team.vscode-icons
