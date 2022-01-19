@@ -8,4 +8,4 @@ ports:
    onOpen: open-preview
 vscode:
   extensions:
-    - elmTooling.elm-ls-vscode@0.8.0:rb3k4mPelyC4Fqod9UBvvA==
+    - elmTooling.elm-ls-vscode
