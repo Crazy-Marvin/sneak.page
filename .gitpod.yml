@@ -1,18 +1,16 @@
-image:
-  file: .gitpod.Dockerfile
-tasks:
- - init: elm make src/Main.elm --output elm.js --debug
-   command: python3 -m http.server
 ports:
- - port: 8000
-   onOpen: open-preview
+  - port: 8000
+    onOpen: notify
+
+tasks:
+  - name: elm reactor
+    init: |
+      npm install
+      gp sync-done npminstall
+    command: npm run-script start
+  - init: |
+      gp sync-await npminstall
+    command: echo
 vscode:
   extensions:
-    - elmTooling.elm-ls-vscode
-    - simonsiefke.prettier-vscode
-    - hbenl.vscode-test-explorer
-    - firefox-devtools.vscode-firefox-debug
-    - ms-vscode.js-debug
-    - ms-vscode.test-adapter-converter
-    - mikestead.dotenv
-    - vscode-icons-team.vscode-icons
+    - "elmtooling.elm-ls-vscode"
