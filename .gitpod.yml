@@ -5,9 +5,9 @@ ports:
 tasks:
   - name: elm reactor
     init: |
-      npm install
+      npx install
       gp sync-done npminstall
-    command: npm run-script start
+    command: npx run-script start
   - init: |
       gp sync-await npminstall
     command: echo
