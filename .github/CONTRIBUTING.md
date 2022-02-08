@@ -21,6 +21,13 @@
 
   - sudo npm install -g elm-test elm-format elm-review
 
+### Gitpod
+
+- Go to [https://gitpod.io/#https://github.com/Crazy-Marvin/sneak.page](https://gitpod.io/#https://github.com/Crazy-Marvin/sneak.page)
+- Run `npx install -g elm elm-test elm-format`
+- Always add `npx` before a command which you wouldn't do locally (e.g. `npx elm reactor` instead of `elm reactor`)
+
+
 ### Windows
 
  - [Install Elm](https://github.com/elm/compiler/releases/download/0.19.1/installer-for-windows.exe)
