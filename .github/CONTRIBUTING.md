@@ -35,6 +35,15 @@
  - Install [Visual Studio Code](https://code.visualstudio.com/) 
     - Enable the ```elmtooling.elm-ls-vscode``` extension
 
+# Secrets
+
+Secrets (primarily API keys) are handled within GitHub directly.
+
+[`TMDB`](https://developers.themoviedb.org/3/getting-started/introduction): you can get one from https://developers.themoviedb.org/   
+[`CODECOV_TOKEN`](https://about.codecov.io/): this comes from Codecov  
+[`LHCI_GITHUB_APP_TOKEN`](https://github.com/treosh/lighthouse-ci-action): this comes from the GitHub Action  
+![key](https://user-images.githubusercontent.com/15004217/153264623-1ed3afb6-3a68-4db8-9900-46fa397ed35a.PNG)
+
 # Running
 
 elm reactor
@@ -65,3 +74,4 @@ E-Mail
 # Support
 
 E-Mail
+
