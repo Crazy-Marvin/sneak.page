@@ -6,6 +6,7 @@ import Element.Border as Border
 import Element.Font as Font
 import Element.Input
 import Json.Decode
+import List.Extra
 
 
 main =
@@ -110,18 +111,50 @@ header =
 
 screenings : List Movie -> Element msg
 screenings movies =
-    Element.row [ spacing 32, centerX, padding 32 ] (List.map screening movies)
+    Element.column
+        [ spacing 32
+        , centerX
+        , padding 32
+
+        -- , Element.explain Debug.todo
+        ]
+        (List.map (Element.row [ spacing 32 ])
+            (List.Extra.greedyGroupsOf 4 (List.map screening movies))
+        )
 
 
 screening : Movie -> Element msg
 screening movie =
     Element.link
-        [ centerX, Border.width 1, Border.color orange, Border.rounded 4 ]
+        [ Border.width 1
+        , Border.color orange
+        , Border.rounded 4
+        , width (px 256)
+        , height fill
+        ]
         { url = "#"
         , label =
-            Element.column []
-                [ Element.image [ width (px 256), Border.roundEach { topLeft = 4, topRight = 4, bottomLeft = 0, bottomRight = 0 } ] { src = "assets/upcoming_screening_poster.png", description = "Upcoming Screening" }
-                , Element.el [ Font.color orange, Font.size 16, padding 16 ] (Element.text movie.originalTitle)
+            Element.column [ height fill ]
+                [ Element.image
+                    [ width fill
+                    , Border.roundEach
+                        { topLeft = 4
+                        , topRight = 4
+                        , bottomLeft = 0
+                        , bottomRight = 0
+                        }
+                    ]
+                    { src = "assets/upcoming_screening_poster.png"
+                    , description = "Upcoming Screening"
+                    }
+                , Element.el
+                    [ Font.color orange
+                    , Font.size 16
+                    , padding 16
+                    ]
+                    (Element.paragraph [ Element.width Element.fill ]
+                        [ Element.text movie.originalTitle ]
+                    )
                 ]
         }
 
