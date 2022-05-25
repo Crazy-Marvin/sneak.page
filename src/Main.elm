@@ -1,15 +1,67 @@
 module Main exposing (..)
 
+import Browser
 import Element exposing (Element, alignRight, centerX, centerY, el, fill, height, padding, px, rgb255, row, spacing, text, width)
 import Element.Background as Background
 import Element.Border as Border
 import Element.Font as Font
 import Element.Input
+import Html exposing (Html)
+import Http
 import Json.Decode
 import List.Extra
 
 
+type alias Model =
+    {}
+
+
+type Msg
+    = PastScreeningsReceived
+        -- Pascal case for all type definitions
+        (Result Http.Error String)
+
+
+main : Program {} Model Msg
 main =
+    Browser.element
+        { init = init
+        , view = view
+        , update = update
+        , subscriptions = subscriptions
+        }
+
+
+init : {} -> ( Model, Cmd Msg )
+init flags =
+    ( {}
+    , Http.request
+        { method = "GET"
+        , headers =
+            [ Http.header "apikey" "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhmdnpweWp3bXZiZGdkc3ppcXlqIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NDQ0NDYyNzksImV4cCI6MTk2MDAyMjI3OX0.6Qr5tFLT0tO0vvxlpIr5t22365GkKRGwqjgKRVQc1Po"
+            , Http.header "Authorization" "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhmdnpweWp3bXZiZGdkc3ppcXlqIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NDQ0NDYyNzksImV4cCI6MTk2MDAyMjI3OX0.6Qr5tFLT0tO0vvxlpIr5t22365GkKRGwqjgKRVQc1Po"
+            ]
+        , url = "https://hfvzpyjwmvbdgdsziqyj.supabase.co/rest/v1/past_screenings"
+        , body = Http.emptyBody
+        , expect = Http.expectString PastScreeningsReceived
+        , timeout = Nothing
+        , tracker = Nothing
+        }
+    )
+
+
+update : Msg -> Model -> ( Model, Cmd Msg )
+update msg model =
+    ( {}, Cmd.none )
+
+
+subscriptions : Model -> Sub Msg
+subscriptions model =
+    Sub.none
+
+
+view : Model -> Html Msg
+view model =
     Element.layout
         [ Font.family
             [ Font.external
