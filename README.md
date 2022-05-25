@@ -1,5 +1,6 @@
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/Crazy-Marvin/sneak.page/ci/trunk)
 [![Elm Meetup Hannover Project](https://img.shields.io/badge/Help%20from%20Elm%20Hannover-blue?logo=elm)](https://www.meetup.com/Hannover-Elm-Language-Meetup/)
+[![sneak.page uses Supabase](https://img.shields.io/badge/Supabase-pink?logo=supabase)](https://supabase.com/)
 [![Last commit](https://img.shields.io/github/last-commit/Crazy-Marvin/sneak.page.svg?style=flat)](https://github.com/Crazy-Marvin/sneak.page/commits)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/25a7af949ce644b299a3ddb5c6a35e9a)](https://www.codacy.com/gh/Crazy-Marvin/sneak.page/dashboard?utm_source=github.com&utm_medium=referral&utm_content=Crazy-Marvin/sneak.page&utm_campaign=Badge_Grade)
 [![codecov](https://codecov.io/gh/CrazyMarvin/sneak.page/branch/master/graph/badge.svg?token=67hTgyu8sZ)](https://codecov.io/gh/CrazyMarvin/sneak.page)
