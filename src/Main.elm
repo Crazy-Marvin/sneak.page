@@ -13,13 +13,40 @@ import List.Extra
 
 
 type alias Model =
-    {}
+    { pastScreenings : List PastScreening }
+
+
+type alias PastScreening =
+    { id : String
+    , createdAt : String
+    , movieId : Int
+    , cinemaId : String
+    , screenedAt : String
+    }
+
+
+pastScreeningDecoder : Json.Decode.Decoder PastScreening
+pastScreeningDecoder =
+    Json.Decode.map5
+        (\id createdAt movieId cinemaId screenedAt ->
+            { id = id
+            , createdAt = createdAt
+            , movieId = movieId
+            , cinemaId = cinemaId
+            , screenedAt = screenedAt
+            }
+        )
+        (Json.Decode.field "id" Json.Decode.string)
+        (Json.Decode.field "created_at" Json.Decode.string)
+        (Json.Decode.field "movie_id" Json.Decode.int)
+        (Json.Decode.field "cinema_id" Json.Decode.string)
+        (Json.Decode.field "screened_at" Json.Decode.string)
 
 
 type Msg
     = PastScreeningsReceived
         -- Pascal case for all type definitions
-        (Result Http.Error String)
+        (Result Http.Error (List PastScreening))
 
 
 main : Program {} Model Msg
@@ -34,7 +61,7 @@ main =
 
 init : {} -> ( Model, Cmd Msg )
 init flags =
-    ( {}
+    ( { pastScreenings = [] }
     , Http.request
         { method = "GET"
         , headers =
@@ -43,16 +70,30 @@ init flags =
             ]
         , url = "https://hfvzpyjwmvbdgdsziqyj.supabase.co/rest/v1/past_screenings"
         , body = Http.emptyBody
-        , expect = Http.expectString PastScreeningsReceived
+        , expect = Http.expectJson PastScreeningsReceived pastScreeningsDecoder
         , timeout = Nothing
         , tracker = Nothing
         }
     )
 
 
+pastScreeningsDecoder : Json.Decode.Decoder (List PastScreening)
+pastScreeningsDecoder =
+    Json.Decode.list pastScreeningDecoder
+
+
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    ( {}, Cmd.none )
+    case msg of
+        PastScreeningsReceived (Ok newPastScreenings) ->
+            ( { model | pastScreenings = newPastScreenings }, Cmd.none )
+
+        PastScreeningsReceived (Err httpError) ->
+            let
+                _ =
+                    Debug.log "httpError" httpError
+            in
+            ( model, Cmd.none )
 
 
 subscriptions : Model -> Sub Msg
@@ -71,7 +112,7 @@ view model =
             , Font.sansSerif
             ]
         ]
-        startpage
+        (startpage model)
 
 
 red : Element.Color
@@ -89,11 +130,12 @@ orange =
     Element.rgb255 247 187 154
 
 
-startpage : Element msg
-startpage =
+startpage : Model -> Element msg
+startpage model =
     Element.column
         [ width fill, Background.color red, height fill ]
-        [ header
+        [ Element.text (String.fromInt (List.length model.pastScreenings))
+        , header
         , Element.el [ centerX, Font.color orange, Font.medium, Font.size 24, padding 32 ] (Element.text "SHOWING SCREENINGS NEAR")
         , Element.Input.button [ centerX, Font.color orange, Font.medium, Font.size 18, padding 16, Border.width 1, Border.color orange, Border.rounded 4 ]
             { onPress = Nothing
