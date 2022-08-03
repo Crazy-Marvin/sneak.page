@@ -10,6 +10,9 @@ import Html exposing (Html)
 import Http
 import Json.Decode
 import List.Extra
+import Sentry exposing (Sentry)
+import Task
+import UUID exposing (UUID)
 
 
 type alias Model =
@@ -300,3 +303,33 @@ movieDecoder =
 moviesOrError : Result Json.Decode.Error (List Movie)
 moviesOrError =
     Json.Decode.decodeString (Json.Decode.field "results" (Json.Decode.list movieDecoder)) jsonData
+
+
+
+-- SENTRY
+
+
+{-| DSN: <https://0bde8933d4a94a6dba12eddeed97a36e@o282785.ingest.sentry.io/6606204>
+-}
+config : Sentry.Config
+config =
+    Sentry.config
+        { publicKey = "0bde8933d4a94a6dba12eddeed97a36e"
+        , host = "o282785.ingest.sentry.io"
+        , projectId = "6606204"
+        }
+
+
+releaseVersion : Sentry.ReleaseVersion
+releaseVersion =
+    Sentry.releaseVersion "1.0.0"
+
+
+environment : Sentry.Environment
+environment =
+    Sentry.environment "test"
+
+
+sentry : Sentry
+sentry =
+    Sentry.withContext config releaseVersion environment "example"
