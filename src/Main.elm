@@ -1,5 +1,6 @@
 module Main exposing (..)
 
+import Dict
 import Browser
 import Element exposing (Element, alignRight, centerX, centerY, el, fill, height, padding, px, rgb255, row, spacing, text, width)
 import Element.Background as Background
@@ -50,6 +51,7 @@ type Msg
     = PastScreeningsReceived
         -- Pascal case for all type definitions
         (Result Http.Error (List PastScreening))
+    | Response (Result Http.Error UUID)
 
 
 main : Program {} Model Msg
@@ -96,7 +98,11 @@ update msg model =
                 _ =
                     Debug.log "httpError" httpError
             in
-            ( model, Cmd.none )
+            ( model, Task.attempt Response (sentry.debug "httpError" Dict.empty) )
+
+        Response _ ->
+          -- ignore
+          ( model, Cmd.none )
 
 
 subscriptions : Model -> Sub Msg
