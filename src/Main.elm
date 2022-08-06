@@ -96,6 +96,10 @@ update msg model =
                 _ =
                     Debug.log "httpError" httpError
             in
+            ( model, Task.attempt Response (sentry.debug "httpError" Dict.empty) )
+
+        Response ->
+            -- ignore
             ( model, Cmd.none )
 
 
