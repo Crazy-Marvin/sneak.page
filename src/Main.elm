@@ -158,7 +158,16 @@ startpage model =
                 screenings movies
 
             Err error ->
-                Element.text (Json.Decode.errorToString error)
+                Element.text (Json.Decode.errorToString error) ->
+            let
+                _ =
+                    Debug.log "moviesError" httpError
+            in
+            ( model, Task.attempt Response (sentry.debug "moviesError" Dict.empty) )
+
+        Response ->
+            -- ignore
+            ( model, Cmd.none )
         ]
 
 
