@@ -11,11 +11,14 @@
 [![Pull requests](https://img.shields.io/github/issues-pr/Crazy-Marvin/sneak.page.svg?style=flat)](https://github.com/Crazy-Marvin/sneak.page/pulls)
 #Hosted Weblate
 [![Dependabot](https://img.shields.io/badge/Dependabot-white?logo=dependabot)](https://dependabot.com/)
+[![sneak.page PingPing](https://img.shields.io/badge/Ping-blue?logo=pingping)](https://ping.sneak.page/)
+[![sneak.page updwown.io](https://img.shields.io/badge/Uptime-gray?logo=updown)](https://up.sneak.page/)
 [![Website](https://badgen.net/badge/icon/website?icon=firefox&label)](https://sneak.page/)
+[![sneak.page Status](https://img.shields.io/badge/Status-black?logo=instatus)](https://status.sneak.page/)
 
 # sneak.page
 
-\_TBD
+[sneak.page](https://sneak.page/) gives you an overview of sneak previews in your local cinema(s).
 
 # Contributing
 
