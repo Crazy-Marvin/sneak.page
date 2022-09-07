@@ -1,6 +1,7 @@
 module Main exposing (..)
 
 import Browser
+import Dict
 import Element exposing (Element, alignRight, centerX, centerY, el, fill, height, padding, px, rgb255, row, spacing, text, width)
 import Element.Background as Background
 import Element.Border as Border
@@ -50,6 +51,7 @@ type Msg
     = PastScreeningsReceived
         -- Pascal case for all type definitions
         (Result Http.Error (List PastScreening))
+    | Response (Result Http.Error UUID)
 
 
 main : Program {} Model Msg
@@ -65,18 +67,28 @@ main =
 init : {} -> ( Model, Cmd Msg )
 init flags =
     ( { pastScreenings = [] }
-    , Http.request
-        { method = "GET"
-        , headers =
-            [ Http.header "apikey" "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhmdnpweWp3bXZiZGdkc3ppcXlqIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NDQ0NDYyNzksImV4cCI6MTk2MDAyMjI3OX0.6Qr5tFLT0tO0vvxlpIr5t22365GkKRGwqjgKRVQc1Po"
-            , Http.header "Authorization" "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhmdnpweWp3bXZiZGdkc3ppcXlqIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NDQ0NDYyNzksImV4cCI6MTk2MDAyMjI3OX0.6Qr5tFLT0tO0vvxlpIr5t22365GkKRGwqjgKRVQc1Po"
-            ]
-        , url = "https://hfvzpyjwmvbdgdsziqyj.supabase.co/rest/v1/past_screenings"
-        , body = Http.emptyBody
-        , expect = Http.expectJson PastScreeningsReceived pastScreeningsDecoder
-        , timeout = Nothing
-        , tracker = Nothing
-        }
+    , Cmd.batch
+        [ Http.request
+            { method = "GET"
+            , headers =
+                [ Http.header "apikey" "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhmdnpweWp3bXZiZGdkc3ppcXlqIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NDQ0NDYyNzksImV4cCI6MTk2MDAyMjI3OX0.6Qr5tFLT0tO0vvxlpIr5t22365GkKRGwqjgKRVQc1Po"
+                , Http.header "Authorization" "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhmdnpweWp3bXZiZGdkc3ppcXlqIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NDQ0NDYyNzksImV4cCI6MTk2MDAyMjI3OX0.6Qr5tFLT0tO0vvxlpIr5t22365GkKRGwqjgKRVQc1Po"
+                ]
+            , url = "https://hfvzpyjwmvbdgdsziqyj.supabase.co/rest/v1/past_screenings"
+            , body = Http.emptyBody
+            , expect = Http.expectJson PastScreeningsReceived pastScreeningsDecoder
+            , timeout = Nothing
+            , tracker = Nothing
+            }
+        , case moviesOrError of
+            Err decodeError ->
+                Task.attempt Response (sentry.debug "moviesError" Dict.empty)
+
+            Ok movies ->
+                Cmd.none
+
+        -- it does not matter if Err or Ok first
+        ]
     )
 
 
@@ -98,7 +110,7 @@ update msg model =
             in
             ( model, Task.attempt Response (sentry.debug "httpError" Dict.empty) )
 
-        Response ->
+        Response _ ->
             -- ignore
             ( model, Cmd.none )
 
@@ -158,16 +170,7 @@ startpage model =
                 screenings movies
 
             Err error ->
-                Element.text (Json.Decode.errorToString error) ->
-            let
-                _ =
-                    Debug.log "moviesError" httpError
-            in
-            ( model, Task.attempt Response (sentry.debug "moviesError" Dict.empty) )
-
-        Response ->
-            -- ignore
-            ( model, Cmd.none )
+                Element.text (Json.Decode.errorToString error)
         ]
 
 
