@@ -1,0 +1,5 @@
+version: STSv1
+mode: enforce
+mx: *.mail.protection.outlook.com
+mx: *.nospamproxy.com
+max_age: 15552000
