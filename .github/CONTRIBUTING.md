@@ -1,5 +1,7 @@
 # Setup
 
+## Elm
+
 ### 🐧 Linux
 - [Install Elm](https://github.com/elm/compiler/blob/master/installers/linux/README.md)
 
@@ -34,6 +36,16 @@
     - Put the ```elm-format.exe``` from [avh4/elm-format](https://github.com/avh4/elm-format/releases) into ```C:\Program Files (x86)\Elm\0.19.1\bin```
  - Install [Visual Studio Code](https://code.visualstudio.com/) 
     - Enable the ```elmtooling.elm-ls-vscode``` extension
+
+## Supabase
+
+### 🐧 Linux
+
+https://supabase.com/docs/guides/functions/quickstart
+
+### Windows
+
+https://supabase.com/docs/guides/functions/quickstart
 
 # Secrets
 
