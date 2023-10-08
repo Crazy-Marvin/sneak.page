@@ -1,5 +1,5 @@
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/Crazy-Marvin/sneak.page/ci/trunk)
-[![Vercel](https://vercelbadge.vercel.app/api/datejer/vercel-badge?style=flat)](https://vercel.com/?utm_source=crazy-marvin&utm_campaign=oss)
+[![Vercel](https://vercelbadge.vercel.app/api/crazy-marvin/sneak-page?style=flat)](https://vercel.com/?utm_source=crazy-marvin&utm_campaign=oss)
 [![Powered by Vercel](https://img.shields.io/badge/Powered%20by%20Vercel%20-black?logo=vercel)](https://vercel.com/?utm_source=crazy-marvin&utm_campaign=oss)
 [![Elm Meetup Hannover Project](https://img.shields.io/badge/Help%20from%20Elm%20Hannover-blue?logo=elm)](https://www.meetup.com/Hannover-Elm-Language-Meetup/)
 [![sneak.page uses Sentry](https://img.shields.io/badge/Sentry-gray?logo=sentry)](https://sentry.io/)
