@@ -17,7 +17,8 @@
 [![sneak.page updwown.io](https://img.shields.io/badge/Uptime-gray?logo=updown)](https://up.sneak.page/)
 [![Website](https://badgen.net/badge/icon/website?icon=firefox&label)](https://sneak.page/)
 [![sneak.page Status](https://img.shields.io/badge/Status-black?logo=instatus)](https://status.sneak.page/)
-
+[![sneak.page Status](https://img.shields.io/badge/Status-black?logo=instatus)](https://status.sneak.page/)
+[![vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)]
 # sneak.page
 
 [sneak.page](https://sneak.page/) gives you an overview of sneak previews in your local cinema(s).
@@ -43,4 +44,4 @@ Additionally a huge thanks goes to my sponsors [Oh Dear](https://ohdear.app/), [
 
 # License
 
-[MIT License](https://choosealicense.com/licenses/mit/)
+This project is licensed under the terms of the MIT License. [MIT License](https://choosealicense.com/licenses/mit/)
